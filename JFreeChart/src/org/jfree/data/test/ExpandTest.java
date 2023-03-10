@@ -52,14 +52,14 @@ public class ExpandTest {
 					{"lowerMargin = 1, upperMargin = 0.1", 1, 0.1, new Range(-100, 110)},
 					{"lowerMargin = 1, upperMargin = 0", 1, 0, new Range(-100, 100)},
 					{"lowerMargin = 0.5, upperMargin = -0.1", 0.5, -0.1, new Range(-50, 90)},
-					{"lowerMargin = 0.5, upperMargin = 1.1", 0.5, 1.1, new Range(-50, 110)},
+					{"lowerMargin = 0.5, upperMargin = 1.1", 0.5, 1.1, new Range(-50, 210)},
 					{"lowerMargin = 0.9, upperMargin = 1", 0.9, 1, new Range(-90, 200)},
 					{"lowerMargin = 0.5, upperMargin = 1", 0.5, 1, new Range(-50, 200)},
 					{"lowerMargin = 0.1, upperMargin = 1", 0.1, 1, new Range(-10, 200)},
 					{"lowerMargin = 0, upperMargin = 1", 0, 1, new Range(0, 200)},
 					{"lowerMargin = -0.1, upperMargin = 0.5", -0.1, 0.5, new Range(10, 150)},
-					{"lowerMargin = 1.1, upperMargin = 0.5", 1.1, 0.5, new Range(-110, 150)},
-					{"lowerMargin = -1, upperMargin = -0.5", -1, -0.5, new Range(0, 10)}, // new case added to simulate a situation where lower > upper during the expansion
+					{"lowerMargin = 1.5, upperMargin = 0.5", 1.5, 0.5, new Range(-150, 150)},
+					{"lowerMargin = -1, upperMargin = -0.5", -1, -0.5, new Range(75, 75)}, // new case added to simulate a situation where lower > upper during the expansion
 			};
 			return Arrays.asList(testingData);
 		} 

@@ -30,6 +30,7 @@ public class CombineTests {
 		@Parameters
 		public static Collection<Object[]> data() {
 			return Arrays.asList(new Object[][] {
+				// MSG, Range 1, Range 2, Expected
 				{"range1 = null, range2 = [1,5], expected = [1,5]", null, new Range(1,5), new Range(1,5)},
 				{"range1 = [-5,20], range2 = null, expected = [-5,20]", new Range(-5,20), null, new Range(-5,20)},
 				{"range1 = [-5,0], range2 = [2, 24], expected = [-5,24]", new Range(-5,20), new Range(2,24), new Range(-5,24)},
@@ -38,7 +39,7 @@ public class CombineTests {
 			});
 		}
 		@Test
-		public void test() {
+		public void combine_parameterTest() {
 			Range result = Range.combine(range1, range2);
 			if(expected == null)
 			{

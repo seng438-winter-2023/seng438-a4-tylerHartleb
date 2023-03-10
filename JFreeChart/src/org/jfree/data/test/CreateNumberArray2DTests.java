@@ -18,10 +18,10 @@ public class CreateNumberArray2DTests {
 	 * This is test partition DAU1.
 	 * */
 	public static class CreateNumberArray2_boundryTest {
-		@Test(expected = InvalidParameterException.class)
+		@Test(expected = IllegalArgumentException.class)
 		public void test() {
 			DataUtilities.createNumberArray2D(null);
-			fail("InvalidParameterException not thrown.");
+			fail("IllegalArgumentException not thrown.");
 		}
 	}
 	
@@ -43,15 +43,16 @@ public class CreateNumberArray2DTests {
 		@Parameters
 		public static Collection<Object[]> testingData() {
 			// Column, Expected
-			return Arrays.asList(new Object[][] { { new double[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } },
-					new Number[][] { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } }, "3x3 All positive whole numbers." },
+			return Arrays.asList(
+					new Object[][] { { new double[][] { { 1.0, 2.0, 3.0 }, { 4.0, 5.0, 6.0 }, { 7.0, 8.0, 9.0 } },
+					new Number[][] { { 1.0, 2.0, 3.0 }, { 4.0, 5.0, 6.0 }, { 7.0, 8.0, 9.0 } }, "3x3 All positive whole numbers." },
 					{ new double[][] { { 1.1, 2.1, -5.34, 1.69 }, { -3, 4, 2.2, 3.334 }, { 1.320, -2.3 },
 							{ 1.45, 24.123, -98.22 } },
-							new Number[][] { { 1.1, 2.1, -5.34, 1.69 }, { -3, 4, 2.2, 3.334 }, { 1.320, -2.3 },
+							new Number[][] { { 1.1, 2.1, -5.34, 1.69 }, { -3.0, 4.0, 2.2, 3.334 }, { 1.320, -2.3 },
 									{ 1.45, 24.123, -98.22 } },
 							"Variable sizes. Positive and negative decimal and whole values." },
 					{ new double[][] {}, new Number[][] {}, "Empty array." },
-					{ new double[][] { { 0 } }, new Number[][] { { 0 } }, "1x1 with 0" },
+					{ new double[][] { { 0.0 } }, new Number[][] { { 0.0 } }, "1x1 with 0" },
 					{new double[][] {{Double.MIN_VALUE, Double.MAX_VALUE},{Double.MIN_VALUE, Double.MAX_VALUE}}, new Number[][] {{Double.MIN_VALUE, Double.MAX_VALUE},{Double.MIN_VALUE, Double.MAX_VALUE}}, "2x2 with Double.MIN_VALUE and DOUBLE.MAX_VALUE"},
 					{new double[][] {{-Double.MAX_VALUE, Double.MAX_VALUE},{-Double.MAX_VALUE, Double.MAX_VALUE}}, new Number[][] {{-Double.MAX_VALUE, Double.MAX_VALUE},{-Double.MAX_VALUE, Double.MAX_VALUE}}, "2x2 with -Double.MAX_VALUE and DOUBLE.MAX_VALUE"}
 

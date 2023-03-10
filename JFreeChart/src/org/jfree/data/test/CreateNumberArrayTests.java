@@ -19,10 +19,10 @@ public class CreateNumberArrayTests {
 		 * testing the method when it is called with null argument. 
 		 * This is test partition AU1.
 		 * */
-		@Test(expected = InvalidParameterException.class)
+		@Test(expected = IllegalArgumentException.class)
 		public void test() {
 			DataUtilities.createNumberArray(null);
-			fail("InvalidParameterException not thrown.");
+			fail("IllegalArgumentException not thrown.");
 		}
 	};
 	
@@ -43,8 +43,8 @@ public class CreateNumberArrayTests {
 		@Parameters
 		public static Collection<Object[]> testingData(){
 			return Arrays.asList(new Object[][] {
-				{new double[] {1,2,3,4,5} , new Number[] {1,2,3,4,5}, "5 elements. Whole numbers."},
-				{new double[] {-1.2, 1, 3.1415, -3.23, -49, 212.1,-1.2, 1, 3.1415, -3.23, -49, 212.1}, new Number[] {-1.2, 1, 3.1415, -3.23, -49, 212.1,-1.2, 1, 3.1415, -3.23, -49, 212.1},"12 elements. Positive and negative decimal and whole values." },
+				{new double[] {1.0, 2.0, 3.0, 4.0, 5.0} , new Number[] {1.0, 2.0, 3.0, 4.0, 5.0}, "5 elements. Whole numbers."},
+				{new double[] {-1.2, 1.0, 3.1415, -3.23, -49, 212.1, -1.2, 1.0, 3.1415, -3.23, -49, 212.1}, new Number[] {-1.2, 1.0, 3.1415, -3.23, -49.0, 212.1,-1.2, 1.0, 3.1415, -3.23, -49.0, 212.1},"12 elements. Positive and negative decimal and whole values." },
 				{new double[] {}, new Number[] {}, "Empty array."},
 				{new double[] {-1.2, 3.4, 3.14159}, new Number[] {-1.2, 3.4, 3.14159}, "3 elements. Positive and negative all decimal values."},
 				{new double[] {Double.MIN_VALUE, Double.MAX_VALUE}, new Number[] {Double.MIN_VALUE, Double.MAX_VALUE}, "2 elements. Double.MIN_VALUE and Double.MAX_VALUE"},

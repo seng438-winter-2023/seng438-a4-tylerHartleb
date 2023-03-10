@@ -308,7 +308,7 @@ public class CalculateRowTotalTests {
 	// Test for invalid Values2D ctype as input to the method
 	public static class CalculateRowTotal_invalidValues2DTests {
 		// This test case tests passing in a null data
-		@Test(expected = InvalidParameterException.class)
+		@Test(expected = IllegalArgumentException.class)
 		public void calculateRowTotal_nullData() {
 			DataUtilities.calculateRowTotal(null, 0);
 		}
@@ -368,16 +368,14 @@ public class CalculateRowTotalTests {
 			});
 		}
 		// Tests if input index for a row is negative
-		@Test
+		@Test(expected = IndexOutOfBoundsException.class)
 		public void calculateRowTotal_negativeIndex() {
-			double result = DataUtilities.calculateRowTotal(this.valuesToTest, -1);
-			assertEquals("Testing a negative row value", 0.0, result, 0.00001d);
+			DataUtilities.calculateRowTotal(this.valuesToTest, -1);
 		}
 		// tests for if input index for a row is larger than the number of rows in input Values2D type
-		@Test
+		@Test(expected = IndexOutOfBoundsException.class)
 		public void calculateRowTotal_biggerIndex() {
-			double result = DataUtilities.calculateRowTotal(this.valuesToTest, 2);
-			assertEquals("Testing a row value that is longer than the length of Values2D", 0.0, result, 0.00001d);
+			DataUtilities.calculateRowTotal(this.valuesToTest, 2);
 		}
 	}
 }
