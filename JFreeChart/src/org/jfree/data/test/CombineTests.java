@@ -34,20 +34,21 @@ public class CombineTests {
 				{"range1 = null, range2 = [1,5], expected = [1,5]", null, new Range(1,5), new Range(1,5)},
 				{"range1 = [-5,20], range2 = null, expected = [-5,20]", new Range(-5,20), null, new Range(-5,20)},
 				{"range1 = [-5,0], range2 = [2, 24], expected = [-5,24]", new Range(-5,20), new Range(2,24), new Range(-5,24)},
-				{"range1 = null, range2 = null, expected = null", null, null, null}
 				
 			});
 		}
 		@Test
 		public void combine_parameterTest() {
 			Range result = Range.combine(range1, range2);
-			if(expected == null)
-			{
-				assert(result == null);
-			}
-			else {
-			assert(expected.equals(result));
-			}		}
+			assertEquals(this.msg, this.expected, result);
+		}
 	}
-
+	
+	public static class Combine_BoundaryTests {
+		@Test
+		public void combine_nullRanges() {
+			Range result = Range.combine(null, null);
+			assertNull(result);
+		}
+	}
 }

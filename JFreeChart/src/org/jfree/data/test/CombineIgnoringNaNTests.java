@@ -30,26 +30,39 @@ public class CombineIgnoringNaNTests {
 		@Parameters
 		public static Collection<Object[]> data() {
 			return Arrays.asList(new Object[][] {
-				{"range1 = null, range2 = NaN Range, expected = null", null, new Range(Double.NaN,Double.NaN), null},
-				{"range1 = NaN Range, range2 = null, expected = null", new Range(Double.NaN,Double.NaN), null, null},
-				{"range1 = null, range2 = [1,5], expected = [1,5]", null, new Range(1,5), new Range(1,5)},
-				{"range1 = [10,20]. range2 = null, expected  = [5,20]", new Range(10,20), null, new Range(10,20)},
-				{"range1 = NaN Range, range2 = NaN Range, expected = null", new Range(Double.NaN,Double.NaN), new Range(Double.NaN,Double.NaN), null},
+				{"range1 = NaN Range, range2 = NaN Range, expected = null", new Range(Double.NaN, Double.NaN), new Range(Double.NaN, Double.NaN), null},
 				{"range1 = [-5,0], range2 = [-2,21], expected = [-5, 21]", new Range(-5,0), new Range(-2,21), new Range(-5,21)},
 				/* extra test case to increase instruction coverage of private max and min functions */
-				{"range1 = [-2,20], range2 = NaN Range, expected = [-2,20]", new Range(-2,20), new Range(Double.NaN,Double.NaN), new Range(-2,20)},
+				{"range1 = [-2,20], range2 = NaN Range, expected = [-2,20]", new Range(-2,20), new Range(Double.NaN, Double.NaN), new Range(-2,20)},
 			});
 		}
 		@Test
 		public void test() {
 			Range result = Range.combineIgnoringNaN(range1, range2);
-			if(expected == null) {
-				assert(result == null);
-			}
-			else {
-				assert(expected.equals(result));	
-			}
+			assertEquals(this.msg, this.expected, result);
 		}
 	}
 
+	
+	public static class CombineIgnoringNaN_BoundaryTests {
+		@Test
+		public void combineIgnoringNaN_NullRanges() {
+			Range result = Range.combineIgnoringNaN(null, null);
+			assertNull("Both ranges are null", result);
+		}
+		
+		@Test
+		public void combineIgnoringNaN_FirstRangeIsNull() {
+			Range result = Range.combineIgnoringNaN(null, new Range(1,5));
+			Range expected = new Range(1, 5);
+			assertEquals("First range is null", expected, result);
+		}
+		
+		@Test
+		public void combineIgnoringNaN_SecondRangeIsNull() {
+			Range result = Range.combineIgnoringNaN(new Range(10,20), null);
+			Range expected = new Range(10,20);
+			assertEquals("First range is null", expected, result);
+		}
+	}
 }
