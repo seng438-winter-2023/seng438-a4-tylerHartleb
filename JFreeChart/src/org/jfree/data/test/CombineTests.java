@@ -44,6 +44,7 @@ public class CombineTests {
 		}
 	}
 	
+	// added to cover additional mutants
 	public static class Combine_BoundaryTests {
 		@Test
 		public void combine_nullRanges() {

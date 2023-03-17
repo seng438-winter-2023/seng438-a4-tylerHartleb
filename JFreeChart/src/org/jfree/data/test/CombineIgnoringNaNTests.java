@@ -43,7 +43,7 @@ public class CombineIgnoringNaNTests {
 		}
 	}
 
-	
+	// added to cover additional mutants
 	public static class CombineIgnoringNaN_BoundaryTests {
 		@Test
 		public void combineIgnoringNaN_NullRanges() {
